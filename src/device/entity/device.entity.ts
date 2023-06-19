@@ -1,4 +1,4 @@
-import { DeviceToUserEntity } from 'src/device-to-user/entity/device-to-user.entity';
+import { Ownership } from 'src/ownership/entity/ownership';
 import { BaseEntity as GenericEntity } from 'src/generic/base.entity';
 import { Entity, Column, OneToMany } from 'typeorm';
 
@@ -13,8 +13,8 @@ export class Device extends GenericEntity {
   @Column({ type: 'varchar', length: 100 })
   local: string;
 
-  @OneToMany(() => DeviceToUserEntity, (deviceToUser) => deviceToUser.device, {
-    cascade: ['insert'],
+  @OneToMany(() => Ownership, (ownership) => ownership.device, {
+    cascade: ['remove'],
   })
-  public deviceToUser: DeviceToUserEntity[];
+  public ownerships: Ownership[];
 }
