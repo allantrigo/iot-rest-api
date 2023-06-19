@@ -53,6 +53,23 @@ yarn start:dev
 yarn start:prod
 ```
 
+## Testing
+
+To facilitate testing the routes, the recommended tool is Insomnia, an HTTP client. To enhance the testing experience, it is needed to install the [Path Parameters](https://insomnia.rest/plugins/insomnia-plugin-path-parameters) plugin for Insomnia.
+
+To test it, you need to import the JSON file located in the [docs](docs) folder of the project into Insomnia. This JSON file contains the collection with the available endpoint calls.
+
+```bash
+# development
+yarn start
+
+# watch mode
+yarn start:dev
+
+# production mode
+yarn start:prod
+```
+
 ## License
 
 Nest is [MIT licensed](LICENSE).
