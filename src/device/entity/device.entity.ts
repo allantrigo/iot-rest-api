@@ -1,9 +1,9 @@
+import { DeviceToUserEntity } from 'src/device-to-user/entity/device-to-user.entity';
+import { BaseEntity as GenericEntity } from 'src/generic/base.entity';
 import { Entity, Column, OneToMany } from 'typeorm';
-import { BaseEntity } from '../../generic/base.entity';
-import { DeviceToUser } from '../../device-to-user/entity/device-to-user.entity';
 
 @Entity({ name: 'device' })
-export class Device extends BaseEntity {
+export class Device extends GenericEntity {
   @Column({ type: 'varchar', length: 100 })
   name: string;
 
@@ -13,6 +13,8 @@ export class Device extends BaseEntity {
   @Column({ type: 'varchar', length: 100 })
   local: string;
 
-  @OneToMany(() => DeviceToUser, (deviceToUser) => deviceToUser.device)
-  public deviceToUser: DeviceToUser[];
+  @OneToMany(() => DeviceToUserEntity, (deviceToUser) => deviceToUser.device, {
+    cascade: ['insert'],
+  })
+  public deviceToUser: DeviceToUserEntity[];
 }

@@ -1,22 +1,30 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
-import { BaseEntity } from '../../generic/base.entity';
-import { User } from '../../user/entity/user.entity';
-import { Device } from '../../device/entity/device.entity';
+import { Device as Device } from 'src/device/entity/device.entity';
+import { User } from 'src/user/entity/user.entity';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 
-enum OwnershipTypes {
+export enum OwnershipTypes {
   OWNER = 'owner',
   EDITOR = 'editor',
   VIEWER = 'viewer',
 }
-
 @Entity({ name: 'device-to-user' })
-export class DeviceToUser extends BaseEntity {
+export class DeviceToUserEntity {
+  @PrimaryColumn()
+  userId: string;
+
+  @PrimaryColumn()
+  deviceId: string;
+
   @Column({ type: 'enum', enum: OwnershipTypes, default: OwnershipTypes.OWNER })
-  ownerships: OwnershipTypes;
+  ownership: OwnershipTypes;
 
-  @ManyToOne(() => User, (user) => user.deviceToUser)
+  @ManyToOne(() => User, (user) => user.deviceToUser, {
+    cascade: ['insert'],
+  })
   public user: User;
-
-  @ManyToOne(() => Device, (device) => device.deviceToUser)
+  @ManyToOne(() => Device, (device) => device.deviceToUser, {
+    onDelete: 'CASCADE',
+    eager: true,
+  })
   public device: Device;
 }
