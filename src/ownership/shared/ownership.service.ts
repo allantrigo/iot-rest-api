@@ -3,7 +3,7 @@ https://docs.nestjs.com/providers#services
 */
 
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { Ownership } from '../entity/ownership';
+import { Ownership } from '../entity/ownership.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from 'src/user/entity/user.entity';

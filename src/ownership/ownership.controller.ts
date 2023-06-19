@@ -15,7 +15,7 @@ import { JwtAuthGuard } from 'src/auth/shared/jwt-auth.guard';
 import { TokenDecorator } from 'src/decorator/token.decorator';
 import { UserService } from 'src/user/shared/user.service';
 import { JoiValidationPipe } from 'src/validator/joi.pipe';
-import { Ownership, OwnershipTypes } from './entity/ownership';
+import { Ownership, OwnershipTypes } from './entity/ownership.entity';
 import { OwnershipService } from './shared/ownership.service';
 import { OwnershipValidator } from 'src/validator/shared/ownership.validator';
 
