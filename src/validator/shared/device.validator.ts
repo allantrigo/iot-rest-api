@@ -12,7 +12,6 @@ export class DeviceValidator {
 
   edit() {
     const schema = Joi.object({
-      id: Joi.string().required(),
       name: Joi.string(),
       local: Joi.string(),
       type: Joi.string(),

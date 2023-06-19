@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DeviceController } from './device.controller';
 import { UserModule } from 'src/user/user.module';
 import { DeviceService } from './shared/device.service';
-import { OwnershipModule } from 'src/ownership/ownership';
+import { OwnershipModule } from 'src/ownership/ownership.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Device]), UserModule, OwnershipModule],
