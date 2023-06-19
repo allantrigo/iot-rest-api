@@ -18,7 +18,7 @@ import { UserService } from 'src/user/shared/user.service';
 import { OwnershipService } from 'src/ownership/shared/ownership.service';
 import { JoiValidationPipe } from 'src/validator/joi.pipe';
 import { TokenDecorator } from 'src/decorator/token.decorator';
-import { Ownership, OwnershipTypes } from 'src/ownership/entity/ownership';
+import { Ownership, OwnershipTypes } from 'src/ownership/entity/ownership.entity';
 import { DeviceService } from './shared/device.service';
 
 @UseGuards(JwtAuthGuard)

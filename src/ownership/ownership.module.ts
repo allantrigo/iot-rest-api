@@ -1,5 +1,5 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Ownership } from './entity/ownership';
+import { Ownership } from './entity/ownership.entity';
 import { OwnershipController } from './ownership.controller';
 import { OwnershipService } from './shared/ownership.service';
 import { Module } from '@nestjs/common';

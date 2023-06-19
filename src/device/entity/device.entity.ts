@@ -1,4 +1,4 @@
-import { Ownership } from 'src/ownership/entity/ownership';
+import { Ownership } from 'src/ownership/entity/ownership.entity';
 import { BaseEntity as GenericEntity } from 'src/generic/base.entity';
 import { Entity, Column, OneToMany } from 'typeorm';
 
