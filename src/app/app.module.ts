@@ -6,7 +6,7 @@ import { AppService } from './shared/app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import { OwnershipModule } from 'src/ownership/ownership';
+import { OwnershipModule } from 'src/ownership/ownership.module';
 
 @Module({
   imports: [
