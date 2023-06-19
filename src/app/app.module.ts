@@ -6,6 +6,7 @@ import { AppService } from './shared/app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { OwnershipModule } from 'src/ownership/ownership';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ConfigModule } from '@nestjs/config';
     AuthModule,
     UserModule,
     DeviceModule,
+    OwnershipModule,
   ],
   controllers: [AppController],
   providers: [AppService],
