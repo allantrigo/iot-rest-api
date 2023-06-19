@@ -1,6 +1,7 @@
 import { Device as Device } from 'src/device/entity/device.entity';
+import { BaseEntity } from 'src/generic/base.entity';
 import { User } from 'src/user/entity/user.entity';
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 
 export enum OwnershipTypes {
   OWNER = 'owner',
@@ -8,23 +9,21 @@ export enum OwnershipTypes {
   VIEWER = 'viewer',
 }
 @Entity({ name: 'device-to-user' })
-export class DeviceToUserEntity {
-  @PrimaryColumn()
-  userId: string;
-
-  @PrimaryColumn()
-  deviceId: string;
-
+export class Ownership extends BaseEntity {
+  constructor(user?: User, device?: Device) {
+    super();
+    this.device = device;
+    this.user = user;
+  }
   @Column({ type: 'enum', enum: OwnershipTypes, default: OwnershipTypes.OWNER })
   ownership: OwnershipTypes;
 
-  @ManyToOne(() => User, (user) => user.deviceToUser, {
-    cascade: ['insert'],
-  })
+  @ManyToOne(() => User, (user) => user.ownership)
   public user: User;
-  @ManyToOne(() => Device, (device) => device.deviceToUser, {
+
+  @ManyToOne(() => Device, (device) => device.ownerships, {
+    cascade: ['insert'],
     onDelete: 'CASCADE',
-    eager: true,
   })
   public device: Device;
 }
