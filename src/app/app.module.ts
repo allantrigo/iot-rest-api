@@ -1,16 +1,31 @@
 import { UserModule } from '../user/user.module';
 import { DeviceModule } from '../device/device.module';
-import { DeviceService } from '../device/shared/device.service';
-import { UserService } from '../user/shared/user.service';
-import { UserController } from '../user/user.controller';
-import { DeviceController } from '../device/device.controller';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './shared/app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from 'src/auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [UserModule, DeviceModule],
-  controllers: [UserController, DeviceController, AppController],
-  providers: [DeviceService, UserService, AppService],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'user',
+      password: 'user',
+      database: 'db',
+      entities: ['dist/**/*.entity{.ts,.js}'],
+      synchronize: true,
+      autoLoadEntities: true,
+    }),
+    AuthModule,
+    UserModule,
+    DeviceModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

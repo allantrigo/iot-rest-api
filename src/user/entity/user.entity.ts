@@ -1,6 +1,6 @@
+import { DeviceToUserEntity as DeviceToUser } from 'src/device-to-user/entity/device-to-user.entity';
+import { BaseEntity } from 'src/generic/base.entity';
 import { Entity, Column, OneToMany } from 'typeorm';
-import { BaseEntity } from '../../generic/base.entity';
-import { DeviceToUser } from '../../device-to-user/entity/device-to-user.entity';
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity {
@@ -10,12 +10,16 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', length: 30 })
   lastName: string;
 
-  @Column({ type: 'varchar', length: 100 })
+  @Column({ type: 'varchar', length: 100, unique: true })
   email: string;
 
   @Column({ type: 'varchar', length: 100 })
   password: string;
 
-  @OneToMany(() => DeviceToUser, (deviceToUser) => deviceToUser.user)
+  @OneToMany(() => DeviceToUser, (deviceToUser) => deviceToUser.user, {
+    onDelete: 'CASCADE',
+    cascade: ['insert'],
+    eager: true,
+  })
   public deviceToUser: DeviceToUser[];
 }
