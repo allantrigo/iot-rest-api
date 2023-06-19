@@ -1,7 +1,7 @@
 import Joi = require('joi');
 
 export class DeviceValidator {
-  register() {
+  create() {
     const schema = Joi.object({
       name: Joi.string().required(),
       local: Joi.string().required(),
@@ -12,9 +12,17 @@ export class DeviceValidator {
 
   edit() {
     const schema = Joi.object({
+      id: Joi.string().required(),
       name: Joi.string(),
       local: Joi.string(),
       type: Joi.string(),
+    });
+    return schema;
+  }
+
+  find() {
+    const schema = Joi.object({
+      id: Joi.string().required(),
     });
     return schema;
   }
