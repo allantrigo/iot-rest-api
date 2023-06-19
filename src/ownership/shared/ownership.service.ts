@@ -44,21 +44,22 @@ export class OwnershipService {
     return await this.ownershipEntityRepository.findBy({ user: user });
   }
 
+  async findById(id: string) {
+    return await this.ownershipEntityRepository.findOne({
+      where: { id: id },
+      relations: ['device', 'user'],
+    });
+  }
+
   async findByUserAndId(userId: string, deviceId: string) {
     return await this.ownershipEntityRepository
       .createQueryBuilder('ownership')
       .leftJoinAndSelect('ownership.device', 'device')
-      .where('ownership.userId = :userId', { userId: userId })
-      .where('ownership.deviceId = :deviceId', { deviceId: deviceId })
+      .where('ownership.userId = :userId AND ownership.deviceId = :deviceId', {
+        userId: userId,
+        deviceId: deviceId,
+      })
       .getOne();
-  }
-
-  async findById(userId: string) {
-    return await this.ownershipEntityRepository
-      .createQueryBuilder('ownership')
-      .leftJoinAndSelect('ownership.device', 'device')
-      .where('ownership.userId = :userId', { userId: userId })
-      .getMany();
   }
 
   async findByUser(userId: string) {
@@ -66,6 +67,14 @@ export class OwnershipService {
       .createQueryBuilder('ownership')
       .leftJoinAndSelect('ownership.device', 'device')
       .where('ownership.userId = :userId', { userId: userId })
+      .getMany();
+  }
+
+  async findByDevice(deviceId: string) {
+    return await this.ownershipEntityRepository
+      .createQueryBuilder('ownership')
+      .leftJoinAndSelect('ownership.user', 'user')
+      .where('ownership.deviceId = :deviceId', { deviceId: deviceId })
       .getMany();
   }
 }

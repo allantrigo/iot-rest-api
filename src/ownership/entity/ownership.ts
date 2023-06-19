@@ -8,12 +8,13 @@ export enum OwnershipTypes {
   EDITOR = 'editor',
   VIEWER = 'viewer',
 }
-@Entity({ name: 'device-to-user' })
+@Entity({ name: 'ownership' })
 export class Ownership extends BaseEntity {
-  constructor(user?: User, device?: Device) {
+  constructor(user?: User, device?: Device, ownership?: OwnershipTypes) {
     super();
     this.device = device;
     this.user = user;
+    this.ownership = ownership;
   }
   @Column({ type: 'enum', enum: OwnershipTypes, default: OwnershipTypes.OWNER })
   ownership: OwnershipTypes;
