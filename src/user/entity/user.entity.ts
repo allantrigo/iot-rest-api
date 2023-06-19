@@ -1,4 +1,4 @@
-import { DeviceToUserEntity as DeviceToUser } from 'src/device-to-user/entity/device-to-user.entity';
+import { Ownership as Ownership } from 'src/ownership/entity/ownership';
 import { BaseEntity } from 'src/generic/base.entity';
 import { Entity, Column, OneToMany } from 'typeorm';
 
@@ -16,10 +16,9 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', length: 100 })
   password: string;
 
-  @OneToMany(() => DeviceToUser, (deviceToUser) => deviceToUser.user, {
+  @OneToMany(() => Ownership, (ownership) => ownership.user, {
     onDelete: 'CASCADE',
     cascade: ['insert'],
-    eager: true,
   })
-  public deviceToUser: DeviceToUser[];
+  public ownership: Ownership[];
 }
