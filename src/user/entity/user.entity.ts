@@ -1,6 +1,6 @@
 import { Entity, Column, OneToMany } from 'typeorm';
-import { BaseEntity } from './base.entity';
-import { DeviceToUser } from './device-to-user.entity';
+import { BaseEntity } from '../../generic/base.entity';
+import { DeviceToUser } from '../../device-to-user/entity/device-to-user.entity';
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity {

@@ -1,0 +1,30 @@
+{
+    "files.exclude": {
+        "dist": true,
+        "node_modules": true,
+        "postgresdata": true,
+        "**/logs": true,
+        "**/*.log": true,
+        "**/npm-debug.log*": true,
+        "**/pnpm-debug.log*": true,
+        "**/yarn-debug.log*": true,
+        "**/yarn-error.log*": true,
+        "**/lerna-debug.log*": true,
+        "**/.DS_Store": true,
+        "coverage": true,
+        ".nyc_output": true,
+        ".idea": true,
+        "**/.project": true,
+        "**/.classpath": true,
+        "**/.c9/": true,
+        "**/*.launch": true,
+        "**/.settings/": true,
+        "**/*.sublime-workspace": true,
+        ".vscode/*": true,
+        ".vscode/settings.json": false,
+        ".vscode/tasks.json": false,
+        ".vscode/launch.json": false,
+        ".vscode/extensions.json": false,
+        ".vscode": true
+    }
+}

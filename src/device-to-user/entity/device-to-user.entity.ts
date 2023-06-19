@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
-import { BaseEntity } from './base.entity';
-import { User } from './user.entity';
-import { Device } from './device.entity';
+import { BaseEntity } from '../../generic/base.entity';
+import { User } from '../../user/entity/user.entity';
+import { Device } from '../../device/entity/device.entity';
 
 enum OwnershipTypes {
   OWNER = 'owner',
